@@ -1,0 +1,49 @@
+.card {
+    background-color: #fff;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    overflow: hidden;
+    color: #141414;
+    // padding: 1rem;
+    .card-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 250px;
+      background-color: #fff;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  
+    h3 {
+      font-size: 1rem;
+      margin: 0.5rem 1rem;
+      font-weight: 400;
+    }
+  
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 1rem;
+      color: #6d6d6d;
+    }
+    span {
+      color: #6d6d6d;
+      font-style: italic;
+      width: 18ch;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .love-icon {
+        color: rgb(236, 22, 68);
+        size: 2rem;
+    }
+  }
+  

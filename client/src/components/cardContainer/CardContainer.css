@@ -1,0 +1,11 @@
+/* CardContainer.css */
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Change from 'start' to 'center' */
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+}
