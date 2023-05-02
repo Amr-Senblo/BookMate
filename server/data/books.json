@@ -1,0 +1,145 @@
+[
+  {
+    "_id": "645073e7230440341ac5d752",
+    "title": "Introduction to Algorithms",
+    "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+    "description": "A comprehensive introduction to the study of algorithms.",
+    "category": "Computer Science",
+    "price": 59.99,
+    "imageUrl": "https://example.com/introduction-to-algorithms.jpg",
+    "rating": 7,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d753",
+    "title": "JavaScript: The Definitive Guide",
+    "author": "David Flanagan",
+    "description": "A comprehensive guide to JavaScript, the programming language used for web development.",
+    "category": "Computer Science",
+    "price": 39.99,
+    "imageUrl": "https://example.com/javascript-the-definitive-guide.jpg",
+    "rating": 5,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d754",
+    "title": "Data Structures and Algorithms in Python",
+    "author": "Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser",
+    "description": "A comprehensive guide to data structures and algorithms in Python.",
+    "category": "Computer Science",
+    "price": 69.99,
+    "imageUrl": "https://example.com/data-structures-and-algorithms-in-python.jpg",
+    "rating": 2,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d755",
+    "title": "Operating System Concepts",
+    "author": "Abraham Silberschatz, Peter Baer Galvin, Greg Gagne",
+    "description": "A comprehensive guide to operating systems.",
+    "category": "Computer Science",
+    "price": 79.99,
+    "imageUrl": "https://example.com/operating-system-concepts.jpg",
+    "rating": 3,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d756",
+    "title": "Database System Concepts",
+    "author": "Abraham Silberschatz, Henry F. Korth, S. Sudarshan",
+    "description": "A comprehensive guide to database systems.",
+    "category": "Computer Science",
+    "price": 89.99,
+    "imageUrl": "https://example.com/database-system-concepts.jpg",
+    "rating": 5,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d757",
+    "title": "Artificial Intelligence: A Modern Approach",
+    "author": "Stuart Russell, Peter Norvig",
+    "description": "A comprehensive guide to artificial intelligence.",
+    "category": "Computer Science",
+    "price": 99.99,
+    "imageUrl": "https://example.com/artificial-intelligence-a-modern-approach.jpg",
+    "rating": 4,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d758",
+    "title": "Computer Networks",
+    "author": "Andrew S. Tanenbaum, David J. Wetherall",
+    "description": "A comprehensive guide to computer networks.",
+    "category": "Computer Science",
+    "price": 69.99,
+    "imageUrl": "https://example.com/computer-networks.jpg",
+    "rating": 4,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d759",
+    "title": "Learning React: A Hands-On Guide to Building Web Applications Using React",
+    "author": "Kirupa Chinnathambi",
+    "description": "A comprehensive guide to building modern web applications using the React library.",
+    "price": 39.99,
+    "category": "Web Development",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51cOD6x+J6L._SX379_BO1,204,203,200_.jpg",
+    "rating": 4.5,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d710",
+    "title": "Node.js Design Patterns",
+    "author": "Mario Casciaro",
+    "description": "A practical guide to writing scalable and maintainable Node.js applications.",
+    "price": 44.99,
+    "category": "Web Development",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51igN1RlRQL._SX376_BO1,204,203,200_.jpg",
+    "rating": 4.7,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d711",
+    "title": "Docker Deep Dive",
+    "author": "Nigel Poulton",
+    "description": "A comprehensive guide to Docker and containerization.",
+    "price": 49.99,
+    "category": "DevOps",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41jy17R-ruL._SX384_BO1,204,203,200_.jpg",
+    "rating": 4.6,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d712",
+    "title": "Kubernetes Up and Running",
+    "author": "Kelsey Hightower, Brendan Burns, and Joe Beda",
+    "description": "A comprehensive guide to Kubernetes, the open-source container orchestration system.",
+    "price": 59.99,
+    "category": "DevOps",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51R-pp6yYWL._SX379_BO1,204,203,200_.jpg",
+    "rating": 4.8,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d713",
+    "title": "AWS Certified Solutions Architect Study Guide",
+    "author": "Ben Piper, David Clinton, and David Cook",
+    "description": "A comprehensive guide to AWS cloud computing, including architecting and deploying scalable, highly available, and fault-tolerant systems.",
+    "price": 54.99,
+    "category": "Cloud Computing",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/517atNaGh1L._SX394_BO1,204,203,200_.jpg",
+    "rating": 4.6,
+    "downloadLink": "link"
+  },
+  {
+    "_id": "645073e7230440341ac6d714",
+    "title": "Kafka: The Definitive Guide",
+    "author": "Neha Narkhede, Gwen Shapira, and Todd Palino",
+    "description": "A comprehensive guide to Apache Kafka, the distributed streaming platform.",
+    "price": 59.99,
+    "category": "Data Engineering",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41SWmnKCH7L._SX379_BO1,204,203,200_.jpg",
+    "rating": 4.7,
+    "downloadLink": "link"
+  }
+]
