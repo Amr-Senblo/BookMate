@@ -22,7 +22,7 @@ app.use(express.json());
 
 // 2) ROUTES
 app.use("/api/v1/books", bookRouter);
-// app.use("/api/v1/category", categoryRouter);
+app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/users", userRouter);
 
 module.exports = app;

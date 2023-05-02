@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const dotenv = require('dotenv');
 
-const Book = require('./../Models/bookModel');
+const Book = require('../../Models/bookModel');
 const { json } = require('express');
 
 dotenv.config({ path: './config.env' });
