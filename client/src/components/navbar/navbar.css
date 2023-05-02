@@ -45,6 +45,7 @@
   font-family: inherit;
   flex-grow: 1;
   margin-left: 15px;
+  color: #141414;
 }
 .navbar__search button {
   border: none;

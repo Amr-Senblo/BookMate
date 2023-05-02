@@ -1,0 +1,128 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(56, 58, 134, 0.4);
+  z-index: 999999;
+}
+.popup__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+  background-color: #EAE3EE;
+  flex-wrap: wrap;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #B169D4;
+  width: 30%;
+}
+.popup__content__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.popup__content__header h2 {
+  margin: 0;
+  font-weight: 400;
+  padding-top: 1rem;
+}
+.popup__content__header__close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  width: 10px;
+  height: 10px;
+}
+.popup__content__header__close:hover {
+  color: red;
+}
+.popup__content__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.popup__content__form label {
+  display: block;
+  margin-bottom: 1rem;
+}
+.popup__content__form label input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.popup__content__form label input:focus {
+  outline: none;
+  border-color: blue;
+}
+.popup__content__form button[type=submit] {
+  padding: 0.5rem;
+  background-color: #621C85;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-size: 1rem;
+}
+.popup__content__form button[type=submit]:hover {
+  background-color: #B169D4;
+}
+.popup__content__toggle {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #621C85;
+}
+.popup__content__toggle:hover {
+  color: #B169D4;
+}
+.popup-open {
+  overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  .popup__content {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .popup__content {
+    width: 90%;
+    padding: 1rem;
+  }
+  .popup__content__header {
+    margin-bottom: 1rem;
+  }
+  .popup__content__header h2 {
+    font-size: 1.5rem;
+  }
+  .popup__content__header__close {
+    font-size: 1.5rem;
+  }
+  .popup__content__form label {
+    margin-bottom: 0.5rem;
+  }
+  .popup__content__form label input {
+    padding: 0.25rem;
+  }
+  .popup__content__form button[type=submit] {
+    padding: 0.25rem;
+  }
+  .popup__content__toggle {
+    font-size: 0.75rem;
+  }
+}/*# sourceMappingURL=Popup.css.map */

@@ -1,0 +1,152 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(56, 58, 134, 0.4);
+  z-index: 999999;
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+    background-color: #EAE3EE;
+    flex-wrap: wrap;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #B169D4;
+    width: 30%;
+    &__header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      // margin-bottom: 1rem;
+      
+      h2 {
+        margin: 0;
+        font-weight: 400;
+        padding-top: 1rem;
+      }
+      
+      &__close {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        // font-size: 2rem;
+        font-weight: 700;
+        width: 10px;
+        height: 10px;
+        
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    
+    &__form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      label {
+        display: block;
+        margin-bottom: 1rem;
+        
+        input {
+          display: block;
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          
+          &:focus {
+            outline: none;
+            border-color: blue;
+          }
+        }
+      }
+      
+      button[type="submit"] {
+        padding: 0.5rem;
+        background-color: #621C85;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        font-size: 1rem;
+        &:hover {
+          background-color: #B169D4;
+        }
+      }
+    }
+    
+    &__toggle {
+      border: none;
+      background-color: transparent;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #621C85;
+      
+      &:hover {
+        color: #B169D4;
+      }
+    }
+  }
+  
+  &-open {
+    overflow: hidden;
+  }
+  
+  @media screen and (max-width: 768px) {
+    &__content {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    &__content {
+      width: 90%;
+      padding: 1rem;
+      
+      &__header {
+        margin-bottom: 1rem;
+        
+        h2 {
+          font-size: 1.5rem;
+        }
+        
+        &__close {
+          font-size: 1.5rem;
+        }
+      }
+      
+      &__form {
+        label {
+          margin-bottom: 0.5rem;
+          
+          input {
+            padding: 0.25rem;
+          }
+        }
+        
+        button[type="submit"] {
+          padding: 0.25rem;
+        }
+      }
+      
+      &__toggle {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

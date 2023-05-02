@@ -1,0 +1,173 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: #f5f5f6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 5rem;
+}
+.sidebar nav ul {
+  margin: 0;
+  list-style: none;
+}
+.sidebar nav ul li {
+  margin: 0 4rem 1rem 2rem;
+}
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #BCBED0;
+  text-decoration: none;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+.sidebar nav ul li a:hover {
+  color: #20387E;
+}
+.sidebar nav ul li a:hover .arrow {
+  background-image: url("../../assets/svg/blue-arrow.svg");
+}
+.sidebar nav ul li a:hover .icon.explore {
+  background-image: url("../../assets/svg/explore.svg");
+}
+.sidebar nav ul li a:hover .icon.categories {
+  background-image: url("../../assets/svg/categories.svg");
+}
+.sidebar nav ul li a:hover .icon.saved {
+  background-image: url("../../assets/svg/saved.svg");
+}
+.sidebar nav ul li a .arrow {
+  display: block;
+  width: 15px;
+  height: 28px;
+  background-image: url("../../assets/svg/light-arrow.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li a .arrow.selected {
+  background-image: url("../../assets/svg/blue-arrow.svg");
+}
+.sidebar .icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  margin-right: 1rem;
+  transition: background-image 0.3s ease-in-out;
+}
+.sidebar .icon.menu {
+  background-color: transparent;
+  background-image: url("../../assets/svg/menu.svg");
+  background-color: red;
+}
+.sidebar .icon.menu:hover {
+  cursor: pointer;
+}
+.sidebar .icon.explore {
+  background-image: url("../../assets/svg/light-explore.svg");
+}
+.sidebar .icon.explore.selected {
+  background-image: url("../../assets/svg/explore.svg");
+}
+.sidebar .icon.categories {
+  background-image: url("../../assets/svg/light-categories.svg");
+}
+.sidebar .icon.categories.selected {
+  background-image: url("../../assets/svg/categories.svg");
+}
+.sidebar .icon.saved {
+  background-image: url("../../assets/svg/light-saved.svg");
+}
+.sidebar .icon.saved.selected {
+  background-image: url("../../assets/svg/saved.svg");
+}
+.sidebar .user {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.sidebar .user .user-info {
+  width: 85%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sidebar .user .user-info .user-image {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 1rem;
+}
+.sidebar .user .user-info .user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.sidebar .user .user-info .user-details .user-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #20387E;
+}
+.sidebar .user .user-info .user-details .user-stars {
+  font-size: 0.9rem;
+  color: #BCBED0;
+  font-weight: 500;
+}
+.sidebar .user .user-logout {
+  width: 15%;
+  height: 60%;
+  background-color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  outline: none;
+  border: none;
+}
+.sidebar .user .user-logout:hover {
+  cursor: pointer;
+}
+.sidebar .user .user-logout:hover .logout-icon {
+  background-image: url("../../assets/svg/logout.svg");
+}
+.sidebar .user .user-logout .logout-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-color: transparent;
+  background-image: url("../../assets/svg/light-logout.svg");
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar.collapsed {
+  transform: translateX(-250px);
+}
+.sidebar.collapsed nav ul li a span:not(.icon) {
+  display: none;
+}
+.sidebar.collapsed nav ul li a .arrow {
+  display: none;
+}/*# sourceMappingURL=SideBar.css.map */
