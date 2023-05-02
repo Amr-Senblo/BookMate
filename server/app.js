@@ -1,5 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require('cors');
+
 const app = express();
 const bookRouter = require("./Routes/bookRouter");
 const categoryRouter = require("./Routes/categoryRouter");
@@ -9,6 +11,12 @@ const userRouter = require("./Routes/userRouter");
 if (process.env.NODE_ENV === "devlopment") {
   app.use(morgan("dev"));
 }
+
+app.use(
+  cors({
+    origin: 'localhost:5173',
+  })
+);
 
 app.use(express.json());
 
