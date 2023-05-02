@@ -121,7 +121,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 3rem;
-        
+
         .user-info {
           width: 85%;
           height: 100%;
@@ -185,6 +185,28 @@
             background-repeat: no-repeat;
             border-radius: 50%;
             transition: all 0.3s ease-in-out;
+          }
+        }
+        .user-login-register {
+          width: 50%;
+          height: 50%;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          // border: 2px solid #cfcfd1;
+  
+          .login-register-text {
+            color: #BCBED0;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.5rem;
+            // margin-right: auto;
+            transition: color 0.3s ease-in-out;
+          }
+          &:hover {
+            cursor: pointer;
+            .login-register-text {
+              color: #20387E;          
+            }
           }
         }
       }
