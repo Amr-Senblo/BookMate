@@ -28,6 +28,14 @@ exports.getBook = catchAsync(async (req, res, next) => {
   });
 });
 
+// 🔥🔥🔥🔥🔥 HEREEEEEEEEEE !!!!
+exports.addBookToSaved = catchAsync(async (req, res) => {});
+exports.deleteBookFromSaved = catchAsync(async (req, res) => {});
+
+
+
+// These functions are restricted to admin
+
 exports.createBook = catchAsync(async (req, res) => {
   const book = await Book.create({
     title: req.body.title,
@@ -66,3 +74,4 @@ exports.deleteBook = catchAsync(async (req, res) => {
     data: null,
   });
 });
+
