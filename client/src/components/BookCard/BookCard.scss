@@ -79,6 +79,10 @@
       font-size: 0.9rem;
       margin: 0.5rem 1rem;
       font-weight: 550;
+      max-width: 200px; /* Set the maximum width of the heading */
+      overflow: hidden; /* Hide overflow */
+      text-overflow: ellipsis; /* Add ellipsis to indicate truncated text */
+      -webkit-line-clamp: 1; /* Limit the number of lines to 2 */
     }
   
     p {
