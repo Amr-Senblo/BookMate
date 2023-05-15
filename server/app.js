@@ -8,7 +8,7 @@ const categoryRouter = require('./Routes/categoryRouter');
 const userRouter = require('./Routes/userRouter');
 
 // 1)MIDDLEWARES
-if (process.env.NODE_ENV === 'devlopment') {
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 

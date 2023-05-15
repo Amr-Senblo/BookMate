@@ -85,3 +85,37 @@ exports.deleteUser = (req, res) => {
     message: 'This route is not yet defined!',
   });
 };
+
+exports.addBookToSaved = async (req, res, next) => {
+  const { userId, bookId } = req.body; // Assuming you will send the user ID and book ID in the request body
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the book is already saved by the user
+    const isBookSaved = user.saved.some(
+      (savedBook) => savedBook.bookId.toString() === bookId
+    );
+
+    if (isBookSaved) {
+      return res.status(400).json({ error: 'Book already saved' });
+    }
+
+    // Add the book to the "saved" array
+    user.saved.push({ bookId });
+
+    // Save the updated user document
+    await user.save();
+
+    next(AppError('Book added to saved successfully', 200));
+  } catch (error) {
+    console.error(error);
+    next(('internal server error', 500));
+  }
+};
