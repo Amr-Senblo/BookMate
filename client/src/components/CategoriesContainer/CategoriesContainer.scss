@@ -1,0 +1,12 @@
+.categories-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+    // justify-content: center;
+    // margin-left: 400px;
+    width: 100%;
+}

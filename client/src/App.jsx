@@ -2,11 +2,14 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import { routerConfig } from "./Navigation/config";
+import { MainSpaceProvider } from "./contexts/MainSpaceContext";
 
 function App() {
   return (
     <div>
-      <RouterProvider router={routerConfig} />
+      <MainSpaceProvider>
+        <RouterProvider router={routerConfig} />
+      </MainSpaceProvider>
     </div>
   );
 }

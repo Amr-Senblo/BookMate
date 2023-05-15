@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
   return (
-    <Link to={`/book/id=${book._id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/books/${book._id}`} style={{ textDecoration: "none" }}>
       <div className="card">
         <div className="card-image">
           <img src={"https://picsum.photos/200"} alt={book.title} />

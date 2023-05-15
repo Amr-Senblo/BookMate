@@ -7,22 +7,34 @@ import StarIcon from "../../assets/svg/star.svg";
 import SavedIcon from "../../assets/svg/saved.svg";
 import { useParams } from "react-router-dom";
 import books from "../../data/books";
+import axios from "axios";
 
 const Book = () => {
-  const { id } = useParams();
+  const { bookId } = useParams();
   const [book, setBook] = useState({});
 
   useEffect(() => {
-    const book = books.find((book) => book.id === Number(id));
-    setBook(book);
-  }, [id]);
+    try {
+      axios.get(`http://localhost:6969/api/v1/books/${bookId}`).then((res) => {
+        console.log(res);
+        setBook(res.data);
+      });
+    } catch (error) {
+      console.log("error", error);
+      if (error.response.status === 404) {
+        console.log("Book not found");
+      } else if (error.response.status === 401) {
+        console.log("Unauthorized");
+      }
+    }
+  }, [bookId]);
 
   return (
     <>
       {book && (
         <div className="book-card">
           <div className="book-image">
-            <img src={book.cover} alt={book.title} />
+            <img src={book.imageUrl} alt={book.title} />
           </div>
           <div className="book-details">
             <h2 className="book-title">{book.title}</h2>

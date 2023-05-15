@@ -26,23 +26,6 @@
             font-size: 1.2rem;
             font-weight: 500;
             transition: color 0.3s ease-in-out;
-            &:hover {
-              color: #20387E;
-                .arrow {
-                    background-image: url('../../assets/svg/blue-arrow.svg');
-                }
-                .icon.explore {
-                    background-image: url('../../assets/svg/explore.svg');
-                }
-                .icon.categories {
-                    background-image: url('../../assets/svg/categories.svg');
-                }
-                .icon.saved {
-                    background-image: url('../../assets/svg/saved.svg');
-                }
-            }
-  
-            
             .arrow {
                 display: block;
                 width: 15px;
@@ -211,55 +194,17 @@
         }
       }
       
-    &.collapsed {
-      transform: translateX(-250px);
-  
-      nav {
-        ul {
-          li {
-            a {
-              span:not(.icon) {
-                display: none;
-              }
-  
-              .arrow {
-                display: none;
-              }
-            }
-          }
-        }
-      }
+    .collapse-icon {
+      display: block;
+      background-image: url(../../assets/svg/menu.svg);
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      background-color: transparent;
     }
+
+    &.collapsed {
+      width: 200px;
+    }
+
   }
-  
-
-
-//   .sidebar-toggle {
-//     position: fixed;
-//     top: 20px;
-//     right: 20px;
-//     width: 30px;
-//     height: 30px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     cursor: pointer;
-//     z-index: 999;
-//     transition: transform 0.3s ease-in-out;
-  
-//     &.collapsed {
-//       transform: translateX(-250px);
-//     }
-  
-//     span {
-//       display: block;
-//       width: 20px;
-//       height: 2px;
-//       background-color: #333;
-  
-//       &:not(:last-child) {
-//         margin-bottom: 5px;
-//       }
-//     }
-//   }
-  

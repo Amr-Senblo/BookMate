@@ -1,5 +1,5 @@
-$scrollbar-thumb-bg: #D46975;
-$scrollbar-thumb-hover-bg: #8E42D3;
+$scrollbar-thumb-bg: #20387E;
+$scrollbar-thumb-hover-bg: #8d8daf;
 $small-screen: 768px;
 
 .layoutContainer {
@@ -8,10 +8,13 @@ $small-screen: 768px;
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
-
-  @media (max-width: $small-screen) {
-    margin-top: 9rem;
+  margin-left: 400px;
+  width: calc(100vw - 420px);
+  @media (max-width: 1000px) {
+    margin-left: 270px;
+    width: calc(100vw - 270px);
   }
+  
 }
 
 
@@ -26,7 +29,7 @@ $small-screen: 768px;
 
 ::-webkit-scrollbar-thumb {
   background: $scrollbar-thumb-bg;
-  border-radius: 5rem;
+  border-radius: 2px;
 
   &:hover {
     background: $scrollbar-thumb-hover-bg;

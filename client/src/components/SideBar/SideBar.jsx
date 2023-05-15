@@ -1,17 +1,15 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./SideBar.scss";
-import MenuIcon from "../../assets/svg/menu.svg";
+// import MenuIcon from "../../assets/svg/menu.svg";
 import Popup from "../popup/Popup";
 
 const SideBar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selectedSection, setSelectedSection] = useState("explore");
-  const handleToggle = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+  const [selectedSection, setSelectedSection] = useState("");
   const [user, setUser] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -20,8 +18,24 @@ const SideBar = () => {
     setIsPopupOpen(false);
   };
 
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/") {
+      setSelectedSection("explore");
+    } else if (path === "/categories") {
+      setSelectedSection("categories");
+    } else if (path === "/saved") {
+      setSelectedSection("saved");
+    } else if (path === "/settings") {
+      setSelectedSection("settings");
+    }
+  }, [location]);
+
   return (
-    <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
+    <div className={`sidebar + ${isCollapsed ? " collapsed" : ""}`}>
+      <button className="collapse" onClick={() => setIsCollapsed(!isCollapsed)}>
+        <span className="collapse-icon"></span>
+      </button>
       <div className="user">
         {user ? (
           <>
@@ -57,15 +71,16 @@ const SideBar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/explore">
-              {/* <span
-                className={`icon explore ${
-                  selectedSection === "explore" ? " selected" : ""
-                }`}
-              ></span> */}
+            <Link
+              to="/"
+              // onClick={() => {
+              //   setSelectedSection("explore");
+              // }}
+            >
               <span
                 style={{
                   color: selectedSection === "explore" ? "#20387E" : "#BCBED0",
+                  transition: "all 0.3s ease",
                 }}
               >
                 Explore
@@ -78,13 +93,26 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/categories">
+            <Link
+              to="/categories"
+              // onClick={() => {
+              //   setSelectedSection("categories");
+              // }}
+            >
               {/* <span
                 className={`icon categories ${
                   selectedSection === "categories" ? " selected" : ""
                 }`}
               ></span> */}
-              <span>Categories</span>
+              <span
+                style={{
+                  color:
+                    selectedSection === "categories" ? "#20387E" : "#BCBED0",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                Categories
+              </span>
               <span
                 className={`arrow ${
                   selectedSection === "categories" ? " selected" : ""
@@ -93,16 +121,45 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/saved">
-              {/* <span
-                className={`icon saved ${
-                  selectedSection === "saved" ? " selected" : ""
-                }`}
-              ></span> */}
-              <span>Saved</span>
+            <Link
+              to="/saved"
+              // onClick={() => {
+              //   setSelectedSection("saved");
+              // }}
+            >
+              <span
+                style={{
+                  color: selectedSection === "saved" ? "#20387E" : "#BCBED0",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                Saved
+              </span>
               <span
                 className={`arrow ${
-                  selectedSection === "categories" ? " selected" : ""
+                  selectedSection === "saved" ? " selected" : ""
+                }`}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/settings"
+              // onClick={() => {
+              //   setSelectedSection("settings");
+              // }}
+            >
+              <span
+                style={{
+                  color: selectedSection === "settings" ? "#20387E" : "#BCBED0",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                Settings
+              </span>
+              <span
+                className={`arrow ${
+                  selectedSection === "settings" ? " selected" : ""
                 }`}
               />
             </Link>

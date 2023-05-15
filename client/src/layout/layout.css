@@ -4,12 +4,13 @@
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
-  flex: 1;
   margin-left: 400px;
+  width: calc(100vw - 420px);
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .layoutContainer {
-    margin-top: 9rem;
+    margin-left: 270px;
+    width: calc(100vw - 270px);
   }
 }
 
@@ -23,9 +24,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D46975;
-  border-radius: 5rem;
+  background: #20387E;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8E42D3;
+  background: #8d8daf;
 }/*# sourceMappingURL=layout.css.map */

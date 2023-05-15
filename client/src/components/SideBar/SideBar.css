@@ -28,21 +28,6 @@
   font-weight: 500;
   transition: color 0.3s ease-in-out;
 }
-.sidebar nav ul li a:hover {
-  color: #20387E;
-}
-.sidebar nav ul li a:hover .arrow {
-  background-image: url("../../assets/svg/blue-arrow.svg");
-}
-.sidebar nav ul li a:hover .icon.explore {
-  background-image: url("../../assets/svg/explore.svg");
-}
-.sidebar nav ul li a:hover .icon.categories {
-  background-image: url("../../assets/svg/categories.svg");
-}
-.sidebar nav ul li a:hover .icon.saved {
-  background-image: url("../../assets/svg/saved.svg");
-}
 .sidebar nav ul li a .arrow {
   display: block;
   width: 15px;
@@ -162,12 +147,33 @@
   border-radius: 50%;
   transition: all 0.3s ease-in-out;
 }
+.sidebar .user .user-login-register {
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.sidebar .user .user-login-register .login-register-text {
+  color: #BCBED0;
+  font-family: "Lato", sans-serif;
+  font-size: 1.5rem;
+  transition: color 0.3s ease-in-out;
+}
+.sidebar .user .user-login-register:hover {
+  cursor: pointer;
+}
+.sidebar .user .user-login-register:hover .login-register-text {
+  color: #20387E;
+}
+.sidebar .collapse-icon {
+  display: block;
+  background-image: url(../../assets/svg/menu.svg);
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-color: transparent;
+}
 .sidebar.collapsed {
-  transform: translateX(-250px);
-}
-.sidebar.collapsed nav ul li a span:not(.icon) {
-  display: none;
-}
-.sidebar.collapsed nav ul li a .arrow {
-  display: none;
+  width: 200px;
 }/*# sourceMappingURL=SideBar.css.map */
