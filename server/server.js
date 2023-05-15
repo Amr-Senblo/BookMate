@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 const cors = require('cors');
+const swagger = require('./swagger');
 
 const DB = process.env.DATABASE.replace('<password>', process.env.PASSWORD);
 mongoose.connect(DB).then((con) => console.log('DB connection successful...'));
@@ -28,6 +29,8 @@ app.use(
     credentials: true,
   })
 );
+
+swagger(app);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
