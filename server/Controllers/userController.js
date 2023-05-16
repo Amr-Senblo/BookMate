@@ -86,36 +86,72 @@ exports.deleteUser = (req, res) => {
   });
 };
 
-exports.addBookToSaved = async (req, res, next) => {
-  const { userId, bookId } = req.body; // Assuming you will send the user ID and book ID in the request body
+exports.addBookToSaved = catchAsync(async (req, res, next) => {
+  const { bookId } = req.body; // bookId is the id of the book to be saved
+  const userId = req.user.id;
+  // console.log(userId);
 
-  try {
-    // Find the user by ID
-    const user = await User.findById(userId);
+  // this part is not  too imnportant
+  const user = await User.findById(userId);
 
-    // Check if the user exists
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Check if the book is already saved by the user
-    const isBookSaved = user.saved.some(
-      (savedBook) => savedBook.bookId.toString() === bookId
-    );
-
-    if (isBookSaved) {
-      return res.status(400).json({ error: 'Book already saved' });
-    }
-
-    // Add the book to the "saved" array
-    user.saved.push({ bookId });
-
-    // Save the updated user document
-    await user.save();
-
-    next(AppError('Book added to saved successfully', 200));
-  } catch (error) {
-    console.error(error);
-    next(('internal server error', 500));
+  // console.log(user)
+  if (!user) {
+    return next(new AppError('User not found', 404));
   }
-};
+
+  // Check if the book is already saved by the user
+  const isBookSaved = user.saved.some(
+    (savedBook) => savedBook.bookId.toString() === bookId
+  );
+
+  if (isBookSaved) {
+    return next(new AppError('Book already saved', 400));
+  }
+
+  // Add the book to the "saved" array
+  user.saved.push({ bookId });
+  console.log(user.saved);
+
+  // Save the updated user document
+  await user.save({ validateBeforeSave: false });
+  return res
+    .status(200)
+    .json({ message: 'Book added to saved successfully', saved: user.saved });
+});
+
+
+
+
+exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
+  const { bookId } = req.body; 
+  const userId = req.user.id;
+
+  // Find the user by ID
+  const user = await User.findById(userId);
+console.log(user)
+  if (!user) {
+    return next(new AppError('User not found', 404));
+  }
+
+  // Check if the book is saved by the user
+  const savedBookIndex = user.saved.findIndex(
+    (savedBook) => savedBook.bookId.toString() === bookId
+  );
+
+  if (savedBookIndex === -1) {
+    return next(new AppError('Book not found in saved', 400));
+  }
+
+  // Remove the book from the "saved" array
+  user.saved.splice(savedBookIndex, 1);
+  console.log(user.saved);
+
+  // Save the updated user document
+  await user.save({ validateBeforeSave: false });
+  return res
+    .status(200)
+    .json({
+      message: 'Book removed from saved successfully',
+      saved: user.saved,
+    });
+});

@@ -14,6 +14,8 @@ const signToken = (id, email) => {
   });
 };
 
+
+
 exports.signup = catchAsync(async (req, res, next) => {
   // check if user already exist
   // Validate if user exist in our database
