@@ -6,21 +6,32 @@ import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/SideBar/SideBar";
 
+import { useSelector } from "react-redux";
+import { useGetWidth } from "../custom/useDimension";
+import { useEffect, useState } from "react";
+
 const Layout = () => {
+  const mainWidth = useSelector((state) => state.mainWidth.value);
+  const [marginWidth, setmarginWidth] = useState(0);
+  const screenWidth = useGetWidth();
+
+  useEffect(() => {
+    setmarginWidth(screenWidth - mainWidth);
+    console.log(screenWidth);
+  }, [mainWidth, screenWidth]);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      {/* <Navbar />
-      <CategoriesBar /> */}
+    <div style={{ display: "flex" }}>
       <SideBar />
-      <div className="layoutContainer">
+      <div
+        className="layoutContainer"
+        style={{
+          width: mainWidth - 5,
+          marginLeft: marginWidth,
+        }}
+      >
         <Outlet />
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };

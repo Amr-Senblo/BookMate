@@ -4,14 +4,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
-  margin-left: 400px;
-  width: calc(100vw - 420px);
-}
-@media (max-width: 1000px) {
-  .layoutContainer {
-    margin-left: 270px;
-    width: calc(100vw - 270px);
-  }
+  transition: width 0.5s;
 }
 
 ::-webkit-scrollbar {

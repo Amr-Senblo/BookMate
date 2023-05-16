@@ -8,13 +8,18 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     padding-top: 5rem;
-
+    transition: width 0.5s;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: flex-start;
     nav {
       ul {
         margin: 0;
           list-style: none;
         li {
             margin: 0 4rem 1rem 2rem;
+            height: 50px;
           a {
             display: flex;
             align-items: center;
@@ -43,9 +48,71 @@
               }
               
           }
+          .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            .explore-icon {
+                display: block;
+                width: 35px;
+                height: 35px;
+                background-image: url('../../assets/svg/light-explore.svg');
+                background-size: cover;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                transition: all 0.3s ease-in-out;
+                &.selected {
+                  background-image: url('../../assets/svg/explore.svg');
+                }
+            }
+            .categories-icon {
+              display: block;
+              width: 35px;
+              height: 35px;
+              background-image: url('../../assets/svg/light-categories.svg');
+              background-size: cover;
+              background-color: transparent;
+              border: none;
+              outline: none;
+              transition: all 0.3s ease-in-out;
+              &.selected {
+                background-image: url('../../assets/svg/categories.svg');
+              }
+            }
+            .saved-icon {
+              display: block;
+              width: 35px;
+              height: 35px;
+              background-image: url('../../assets/svg/light-saved.svg');
+              background-size: cover;
+              background-color: transparent;
+              border: none;
+              outline: none;
+              transition: all 0.3s ease-in-out;
+              &.selected {
+                background-image: url('../../assets/svg/saved.svg');
+              }
+            }
+            .settings-icon {
+              display: block;
+              width: 35px;
+              height: 35px;
+              background-image: url('../../assets/svg/light-settings.svg');
+              background-size: cover;
+              background-color: transparent;
+              border: none;
+              outline: none;
+              transition: all 0.3s ease-in-out;
+              &.selected {
+                background-image: url('../../assets/svg/settings.svg');
+              }
+            }
+            }
+          }
         }
       }
-    }
 
     .icon {
         display: block;
@@ -106,7 +173,7 @@
         margin-bottom: 3rem;
 
         .user-info {
-          width: 85%;
+          width: 70%;
           height: 100%;
           background-color: inherit;
           border-radius: 10px;
@@ -141,14 +208,14 @@
           }
         }
         .user-logout {
-          width: 15%;
-          height: 60%;
+          width: 40px;
+          height: 80px;
           background-color: inherit;
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: center;
-          margin-left: 1rem;
+          // margin-left: 1rem;
           outline: none;
           border: none;
           // background-color: #20387E;
@@ -193,18 +260,42 @@
           }
         }
       }
-      
-    .collapse-icon {
-      display: block;
-      background-image: url(../../assets/svg/menu.svg);
-      width: 30px;
-      height: 30px;
-      background-size: contain;
-      background-color: transparent;
+      .collapse {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        width: 50px;
+        height: 50px;
+        align-self: flex-end;
+        margin-right: 1.9rem;
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        background-color: transparent;
+        padding: 2px;
+        .collapse-icon {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url('../../assets/svg/light-menu.svg');
+            background-size: cover;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              cursor: pointer;
+              background-image: url('../../assets/svg/menu.svg');
+            }
+        }
+      }
     }
 
     &.collapsed {
-      width: 200px;
+      width: 130px;
     }
-
   }
+

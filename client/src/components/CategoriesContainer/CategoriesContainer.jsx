@@ -11,7 +11,7 @@ const CategoriesContainer = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:6969/api/v1/categories`, {
+        .get(`http://localhost:6969/api/v1/category`, {
           withCredentials: true,
         })
         .then((res) => {

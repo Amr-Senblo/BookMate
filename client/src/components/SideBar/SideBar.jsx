@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import "./SideBar.scss";
 // import MenuIcon from "../../assets/svg/menu.svg";
 import Popup from "../popup/Popup";
+import { useGetWidth } from "../../custom/useDimension";
+import { setMainWidth } from "../../redux/mainWidthSlice";
+import { useDispatch } from "react-redux";
 
 const SideBar = () => {
   const [selectedSection, setSelectedSection] = useState("");
@@ -10,6 +13,9 @@ const SideBar = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const mainWidth = useGetWidth();
+  const dispatch = useDispatch();
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -31,28 +37,40 @@ const SideBar = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    if (isCollapsed) {
+      dispatch(setMainWidth(mainWidth - 200));
+    } else {
+      dispatch(setMainWidth(mainWidth - 400));
+    }
+  }, [isCollapsed, mainWidth]);
+
   return (
     <div className={`sidebar + ${isCollapsed ? " collapsed" : ""}`}>
       <button className="collapse" onClick={() => setIsCollapsed(!isCollapsed)}>
-        <span className="collapse-icon"></span>
+        <span className="icon">
+          <span className="collapse-icon"></span>
+        </span>
       </button>
       <div className="user">
-        {user ? (
+        {!user ? (
           <>
             <button className="user-logout" alt="Logout">
               <span className="logout-icon"></span>
             </button>
-            <div className="user-info">
-              <img
-                className="user-image"
-                src="https://picsum.photos/200"
-                alt="user"
-              />
-              <div className="user-details">
-                <span className="user-name">Username</span>
-                <span className="user-stars">100 stars</span>
+            {isCollapsed ? null : (
+              <div className="user-info">
+                <img
+                  className="user-image"
+                  src="https://picsum.photos/200"
+                  alt="user"
+                />
+                <div className="user-details">
+                  <span className="user-name">Username</span>
+                  <span className="user-stars">100 stars</span>
+                </div>
               </div>
-            </div>
+            )}
           </>
         ) : (
           <>
@@ -61,7 +79,7 @@ const SideBar = () => {
               alt="Login/Register"
               onClick={openPopup}
             >
-              <span className="login-register-text">Login/Register</span>
+              <span className="login-register-text">Enter</span>
               <span className="logout-icon"></span>
             </button>
           </>
@@ -71,97 +89,125 @@ const SideBar = () => {
       <nav>
         <ul>
           <li>
-            <Link
-              to="/"
-              // onClick={() => {
-              //   setSelectedSection("explore");
-              // }}
-            >
-              <span
-                style={{
-                  color: selectedSection === "explore" ? "#20387E" : "#BCBED0",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Explore
-              </span>
-              <span
-                className={`arrow ${
-                  selectedSection === "explore" ? " selected" : ""
-                }`}
-              />
+            <Link to="/">
+              {isCollapsed ? (
+                <span className="icon">
+                  <span
+                    className={`explore-icon ${
+                      selectedSection === "explore" ? " selected" : ""
+                    }`}
+                  ></span>
+                </span>
+              ) : (
+                <>
+                  <span
+                    style={{
+                      color:
+                        selectedSection === "explore" ? "#20387E" : "#BCBED0",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    Explore
+                  </span>
+                  <span
+                    className={`arrow ${
+                      selectedSection === "explore" ? " selected" : ""
+                    }`}
+                  />
+                </>
+              )}
             </Link>
           </li>
           <li>
-            <Link
-              to="/categories"
-              // onClick={() => {
-              //   setSelectedSection("categories");
-              // }}
-            >
-              {/* <span
-                className={`icon categories ${
-                  selectedSection === "categories" ? " selected" : ""
-                }`}
-              ></span> */}
-              <span
-                style={{
-                  color:
-                    selectedSection === "categories" ? "#20387E" : "#BCBED0",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Categories
-              </span>
-              <span
-                className={`arrow ${
-                  selectedSection === "categories" ? " selected" : ""
-                }`}
-              />
+            <Link to="/categories">
+              {isCollapsed ? (
+                <span className="icon">
+                  <span
+                    className={`categories-icon ${
+                      selectedSection === "categories" ? " selected" : ""
+                    }`}
+                  ></span>
+                </span>
+              ) : (
+                <>
+                  <span
+                    style={{
+                      color:
+                        selectedSection === "categories"
+                          ? "#20387E"
+                          : "#BCBED0",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    Categories
+                  </span>
+                  <span
+                    className={`arrow ${
+                      selectedSection === "categories" ? " selected" : ""
+                    }`}
+                  />
+                </>
+              )}
             </Link>
           </li>
           <li>
-            <Link
-              to="/saved"
-              // onClick={() => {
-              //   setSelectedSection("saved");
-              // }}
-            >
-              <span
-                style={{
-                  color: selectedSection === "saved" ? "#20387E" : "#BCBED0",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Saved
-              </span>
-              <span
-                className={`arrow ${
-                  selectedSection === "saved" ? " selected" : ""
-                }`}
-              />
+            <Link to="/saved">
+              {isCollapsed ? (
+                <span className="icon">
+                  <span
+                    className={`saved-icon ${
+                      selectedSection === "saved" ? " selected" : ""
+                    }`}
+                  ></span>
+                </span>
+              ) : (
+                <>
+                  <span
+                    style={{
+                      color:
+                        selectedSection === "saved" ? "#20387E" : "#BCBED0",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    Saved
+                  </span>
+                  <span
+                    className={`arrow ${
+                      selectedSection === "saved" ? " selected" : ""
+                    }`}
+                  />
+                </>
+              )}
             </Link>
           </li>
           <li>
-            <Link
-              to="/settings"
-              // onClick={() => {
-              //   setSelectedSection("settings");
-              // }}
-            >
-              <span
-                style={{
-                  color: selectedSection === "settings" ? "#20387E" : "#BCBED0",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Settings
-              </span>
-              <span
-                className={`arrow ${
-                  selectedSection === "settings" ? " selected" : ""
-                }`}
-              />
+            <Link to="/settings">
+              {isCollapsed ? (
+                <span className="icon">
+                  <span
+                    className={`settings-icon ${
+                      selectedSection === "settings" ? " selected" : ""
+                    }`}
+                  ></span>
+                </span>
+              ) : (
+                <>
+                  <span
+                    style={{
+                      color:
+                        selectedSection === "settings" ? "#20387E" : "#BCBED0",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    Settings
+                  </span>
+                  <span
+                    className={`arrow ${
+                      selectedSection === "settings" ? " selected" : ""
+                    }`}
+                  />
+                </>
+              )}
             </Link>
           </li>
         </ul>

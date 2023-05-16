@@ -2,14 +2,14 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import { routerConfig } from "./Navigation/config";
-import { MainSpaceProvider } from "./contexts/MainSpaceContext";
+import { ProvideAuth } from "./custom/useAuth";
 
 function App() {
   return (
     <div>
-      <MainSpaceProvider>
+      <ProvideAuth>
         <RouterProvider router={routerConfig} />
-      </MainSpaceProvider>
+      </ProvideAuth>
     </div>
   );
 }

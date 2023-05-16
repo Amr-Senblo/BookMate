@@ -15,7 +15,7 @@ const Book = () => {
 
   useEffect(() => {
     try {
-      axios.get(`http://localhost:6969/api/v1/books/${bookId}`).then((res) => {
+      axios.get(`http://localhost:6969/api/v1/book/${bookId}`).then((res) => {
         console.log(res);
         setBook(res.data);
       });

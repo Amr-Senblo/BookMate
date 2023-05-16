@@ -13,7 +13,7 @@ const CardContainer = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:6969/api/v1/books`, {
+        .get(`http://localhost:6969/api/v1/book`, {
           withCredentials: true,
         })
         .then((res) => {
