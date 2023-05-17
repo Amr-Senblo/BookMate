@@ -8,8 +8,12 @@ router.route('/').get(bookController.getAllBooks);
 
 router
   .route('/:id')
-  .get(authMiddleware.protect, bookController.getBook)
-  .patch(bookController.updateBook)
+  .get(bookController.getBook)
+  .patch(
+    authMiddleware.protect,
+    authMiddleware.restrictToAdmin,
+    bookController.updateBook
+  )
   .delete(
     authMiddleware.protect,
     authMiddleware.restrictToAdmin,
@@ -22,7 +26,12 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },
 });
-router.post('/upload', upload.single('coverImage'), bookController.createBook);
+router.post(
+  '/upload',
+  upload.single('coverImage'),
+  authMiddleware.protect,
+  bookController.createBook
+);
 // router.get('/download',bookController.downloadBook)
 
 router.get('/download/:id', bookController.downloadBook);
