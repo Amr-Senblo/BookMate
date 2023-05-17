@@ -1,16 +1,10 @@
 const express = require('express');
 const bookController = require('./../Controllers/bookController');
-
 const authMiddleware = require('../Middlewares/authMiddleware');
+const multer = require('multer');
 const router = express.Router();
-router
-  .route('/')
-  .get(bookController.getAllBooks)
-  .post(bookController.createBook);
-router
-  .route('/')
-  .get(bookController.getAllBooks)
-  .post(bookController.createBook);
+
+router.route('/').get(bookController.getAllBooks);
 
 router
   .route('/:id')
@@ -22,5 +16,13 @@ router
     authMiddleware.restrictToAdmin,
     bookController.deleteBook
   );
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+});
+router.post('/upload', upload.single('coverImage'), bookController.createBook);
 
 module.exports = router;

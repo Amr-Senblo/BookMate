@@ -1,0 +1,7 @@
+Some notes about uploading files in node js 
+
+There are three ways to upload files in node js using multer  
+
+    1- saving the file directly onto your server.
+    2- saving the file's binary data or base64 string data in a database
+    3- using aws s3 buckets to save and mange your files 

@@ -67,18 +67,21 @@ exports.getUser = (req, res) => {
     message: 'This route is not yet defined!',
   });
 };
+
 exports.createUser = (req, res) => {
   res.status(500).json({
     status: 'error',
     message: 'This route is not yet defined!',
   });
 };
+
 exports.updateUser = (req, res) => {
   res.status(500).json({
     status: 'error',
     message: 'This route is not yet defined!',
   });
 };
+
 exports.deleteUser = (req, res) => {
   res.status(500).json({
     status: 'error',
@@ -118,9 +121,6 @@ exports.addBookToSaved = catchAsync(async (req, res, next) => {
     .status(200)
     .json({ message: 'Book added to saved successfully', saved: user.saved });
 });
-
-
-
 
 exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
   const { bookId } = req.body; 

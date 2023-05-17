@@ -1,15 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const swagger = require('./swagger');
+const multer = require('multer');
 
 const bookRouter = require('./Routes/bookRouter');
 const categoryRouter = require('./Routes/categoryRouter');
 const userRouter = require('./Routes/userRouter');
 
 const app = express();
+
+
 // 1) MIDDLEWARES
-app.use(express.json());
+app.use(express.json({ limit: '10mb'}));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -25,7 +27,6 @@ app.use(
   })
 );
 
-swagger(app);
 
 // 2) ROUTES
 app.use('/api/v1/book', bookRouter);

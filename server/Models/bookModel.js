@@ -21,10 +21,15 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  imageUrl: {
+  imgCover: {
     type: String,
-    required: true,
+    required: true
   },
+
+  // imageUrl: {
+  //   type: String,
+  //   required: true,
+  // },
   rating: {
     type: Number,
     required: true,
