@@ -11,8 +11,14 @@ router.post('/forgetPassword', authMiddleware.forgetPassword);
 
 router
   .route('/')
-  .get(userController.getAllUsers)
+  .get(authMiddleware.protect, userController.getAuthUser)
   .post(userController.createUser);
+
+router.get(
+  '/all-users',
+  authMiddleware.protect,
+  userController.getAllUsers
+);
 
 router
   .route('/save-book')
@@ -21,5 +27,12 @@ router
 router
   .route('/unsave-book')
   .post(authMiddleware.protect, userController.removeBookFromSaved);
+
+router.get(
+  '/saved-books',
+  authMiddleware.protect,
+  userController.getSavedBooks
+);
+router.get('/is-saved', authMiddleware.protect, userController.isSaved);
 
 module.exports = router;

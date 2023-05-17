@@ -2,20 +2,6 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const Book = require('./../Models/bookModel');
 
-
-
-
-exports.getAllBooks = catchAsync(async (req, res) => {
-  console.log(req.query);
-
-  const books = await Book.find();
-
-  res.status(200).json({
-    result: books.length,
-    books: books,
-  });
-});
-
 exports.getBook = catchAsync(async (req, res, next) => {
   const book = await Book.findById(req.params.id);
   if (!book) {
@@ -26,6 +12,18 @@ exports.getBook = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     book,
+  });
+});
+
+
+exports.getAllBooks = catchAsync(async (req, res) => {
+  console.log(req.query);
+
+  const books = await Book.find();
+
+  res.status(200).json({
+    result: books.length,
+    books: books,
   });
 });
 
@@ -81,36 +79,35 @@ exports.deleteBook = catchAsync(async (req, res) => {
   });
 });
 
-// exports.downloadBook = catchAsync(async (req, res) => {
+exports.downloadBook = catchAsync(async (req, res) => {
 // let bookId = req.params.bookId;
-  // console.log('😎😋')
-  // let { bookId } = req.body;
-  // bookId = ObjectId(bookId); 
-  // console.log(typeof bookId)
+console.log('😎😋')
+let { bookId } = req.body;
+bookId = ObjectId(bookId);
+console.log(typeof bookId)
 
-  // if (!mongoose.Types.ObjectId.isValid(bookId)) {
-  //   return next(new AppError('Invalid book ID'));
-  // }
-  // const book = await Book.findById(bookId);
-  // console.log(book)
-  // const fileName = book.title + '.pdf';
-  // const filePath = '/../dev-data/Books/' + fileName;
+if (!mongoose.Types.ObjectId.isValid(bookId)) {
+  return next(new AppError('Invalid book ID'));
+}
+const book = await Book.findById(bookId);
+console.log(book)
+const fileName = book.title + '.pdf';
+const filePath = '/../dev-data/Books/' + fileName;
 
-  // if (!book) {
-  //   return next(
-  //     new AppError(`Can't find book with this id : ${req.params.id}`)
-  //   );
-  // }
-  // res.download(filePath, fileName, (err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     res.status(404).send('File not found.');
-  //   }
-  // });
-// });
-
-
-exports.downloadBook= catchAsync(async (req, res) => {
-  console.log('hellooooooooo world')  
-  
+if (!book) {
+  return next(
+    new AppError(`Can't find book with this id : ${req.params.id}`)
+  );
+}
+res.download(filePath, fileName, (err) => {
+  if (err) {
+    console.error(err);
+    res.status(404).send('File not found.');
+  }
 });
+});
+
+// exports.downloadBook = catchAsync(async (req, res,next) => {
+//   console.log('hellooooooooo world');
+//   next();
+// });

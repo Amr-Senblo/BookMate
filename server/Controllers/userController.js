@@ -11,6 +11,14 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
+exports.getAuthUser=catchAsync(async(req,res,next)=>{
+  const user=await User.findById(req.user.id)
+  res.status(200).json({
+    status: 'success',
+    user,
+  });
+})
+
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
 
@@ -18,9 +26,8 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     results: users.length,
-  
-      users,
-  
+
+    users,
   });
 });
 
@@ -46,9 +53,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-  
-      user: updatedUser,
- 
+
+    user: updatedUser,
   });
 });
 
@@ -123,12 +129,12 @@ exports.addBookToSaved = catchAsync(async (req, res, next) => {
 });
 
 exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
-  const { bookId } = req.body; 
+  const { bookId } = req.body;
   const userId = req.user.id;
 
   // Find the user by ID
   const user = await User.findById(userId);
-console.log(user)
+  console.log(user);
   if (!user) {
     return next(new AppError('User not found', 404));
   }
@@ -148,10 +154,46 @@ console.log(user)
 
   // Save the updated user document
   await user.save({ validateBeforeSave: false });
-  return res
-    .status(200)
-    .json({
-      message: 'Book removed from saved successfully',
-      saved: user.saved,
-    });
+  return res.status(200).json({
+    message: 'Book removed from saved successfully',
+    saved: user.saved,
+  });
+});
+
+exports.getSavedBooks = catchAsync(async (req, res, next) => {
+  const userId = req.user.id;
+  // const user = User.findById(userId);
+  const user =await User.findById(userId);
+
+  if (!user) {
+    return next(new AppError('User not found', 404));
+  } else {
+    return res
+      .status(200)
+      .json({ message: 'Saved books fetched successfully', saved: user.saved });
+  }
+});
+
+exports.isSaved = catchAsync(async (req, res, next) => {
+  const { bookId } = req.body;
+  const userId = req.user.id;
+  const user = await User.findById(userId);
+
+  // console.log(user)
+  if (!user) {
+    return next(new AppError('User not found', 404));
+  }
+
+  // Check if the book is already saved by the user
+  const isBookSaved = user.saved.some(
+    (savedBook) => savedBook.bookId.toString() === bookId
+  );
+
+  if (isBookSaved) {
+    return res.status(200).json({ message: 'Book is saved', isSaved: true });
+  } else {
+    return res
+      .status(200)
+      .json({ message: 'Book is not saved', isSaved: false });
+  }
 });

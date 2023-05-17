@@ -8,7 +8,6 @@ router.route('/').get(bookController.getAllBooks);
 
 router
   .route('/:id')
-  .get(bookController.getBook)
   .get(authMiddleware.protect, bookController.getBook)
   .patch(bookController.updateBook)
   .delete(
@@ -26,5 +25,6 @@ const upload = multer({
 router.post('/upload', upload.single('coverImage'), bookController.createBook);
 // router.get('/download',bookController.downloadBook)
 
-router.route('/download/:bookId').get(bookController.downloadBook);
+router.get('/download/:id', bookController.downloadBook);
+
 module.exports = router;
