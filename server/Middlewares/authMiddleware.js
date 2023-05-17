@@ -14,8 +14,6 @@ const signToken = (id, email) => {
   });
 };
 
-
-
 exports.signup = catchAsync(async (req, res, next) => {
   // check if user already exist
   // Validate if user exist in our database
@@ -37,9 +35,8 @@ exports.signup = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     token: token,
-  
-      newUser,
-   
+
+    user: newUser,
   });
 });
 
@@ -59,10 +56,9 @@ exports.login = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    
-      token,
-      user,
-    
+
+    token,
+    user,
   });
 });
 
@@ -128,7 +124,6 @@ exports.forgetPassword = async (req, res, next) => {
   // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
-
 
   // 3) Send it to user's email
 };
