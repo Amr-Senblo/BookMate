@@ -25,10 +25,8 @@ exports.getBook = catchAsync(async (req, res, next) => {
   }
   res.status(200).json({
     status: 'success',
-    data: {
-      book,
-    },
-  });
+        book,
+      });
 });
 
 // These functions are restricted to admin
@@ -57,9 +55,9 @@ exports.createBook = catchAsync(async (req, res, next) => {
 
     res.status(201).json({
       status: 'success',
-      data: {
+    
         book,
-      },
+  
     });
   }
 });
@@ -71,9 +69,9 @@ exports.updateBook = catchAsync(async (req, res) => {
   });
   res.status(201).json({
     status: 'success',
-    data: {
+  
       book,
-    },
+ 
   });
 });
 
@@ -86,10 +84,10 @@ exports.deleteBook = catchAsync(async (req, res) => {
 });
 
 exports.downloadBook = catchAsync(async (req, res) => {
-  const book = await Book.findById(req.params.id);
+  const book = await Book.findById(req.body.bookId);
   const fileName = book.title + '.pdf';
-  const filePath = book.downloadLink;
-  
+  const filePath = '../dev-data/Books';
+
   if (!book) {
     return next(
       new AppError(`Can't find book with this id : ${req.params.id}`)

@@ -19,9 +19,9 @@ exports.getCategory = catchAsync(async (req, res, next) => {
   }
   res.status(200).json({
     status: 'success',
-    data: {
+    
       category,
-    },
+    
   });
 });
 
@@ -33,9 +33,9 @@ exports.createCategory = catchAsync(async (req, res) => {
   });
   res.status(201).json({
     status: 'success',
-    data: {
+
       category,
-    },
+  
   });
 });
 
@@ -45,9 +45,9 @@ exports.addBookToCategory = catchAsync(async (req, res) => {
   category.save();
   res.status(201).json({
     status: 'success',
-    data: {
+
       category,
-    },
+
   });
 });
 
@@ -58,10 +58,10 @@ exports.deleteBookFromCategory = catchAsync(async (req, res) => {
   category.save();
   res.status(200).json({
     status: 'success',
-    data: {
+
       category,
       categoryBooks: category.books,
-    },
+ 
   });
 });
 
