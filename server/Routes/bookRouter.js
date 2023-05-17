@@ -24,5 +24,7 @@ const upload = multer({
   },
 });
 router.post('/upload', upload.single('coverImage'), bookController.createBook);
-router.get('/download',bookController.downloadBook)
+// router.get('/download',bookController.downloadBook)
+
+router.route('/download/:bookId').get(bookController.downloadBook);
 module.exports = router;

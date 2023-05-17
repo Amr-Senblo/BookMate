@@ -11,7 +11,7 @@ const app = express();
 
 
 // 1) MIDDLEWARES
-app.use(express.json({ limit: '10mb'}));
+app.use(express.json({ limit: '10mb'})); //100kb
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

@@ -1,9 +1,9 @@
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const Book = require('./../Models/bookModel');
-const multer = require('multer'); // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
-const upload = multer({ dest: 'uploads/' }); // Destination folder to save the uploaded files
+
+
 
 exports.getAllBooks = catchAsync(async (req, res) => {
   console.log(req.query);
@@ -25,8 +25,8 @@ exports.getBook = catchAsync(async (req, res, next) => {
   }
   res.status(200).json({
     status: 'success',
-        book,
-      });
+    book,
+  });
 });
 
 // These functions are restricted to admin
@@ -55,9 +55,8 @@ exports.createBook = catchAsync(async (req, res, next) => {
 
     res.status(201).json({
       status: 'success',
-    
-        book,
-  
+
+      book,
     });
   }
 });
@@ -69,9 +68,8 @@ exports.updateBook = catchAsync(async (req, res) => {
   });
   res.status(201).json({
     status: 'success',
-  
-      book,
- 
+
+    book,
   });
 });
 
@@ -83,20 +81,36 @@ exports.deleteBook = catchAsync(async (req, res) => {
   });
 });
 
-exports.downloadBook = catchAsync(async (req, res) => {
-  const book = await Book.findById(req.body.bookId);
-  const fileName = book.title + '.pdf';
-  const filePath = '../dev-data/Books';
+// exports.downloadBook = catchAsync(async (req, res) => {
+// let bookId = req.params.bookId;
+  // console.log('😎😋')
+  // let { bookId } = req.body;
+  // bookId = ObjectId(bookId); 
+  // console.log(typeof bookId)
 
-  if (!book) {
-    return next(
-      new AppError(`Can't find book with this id : ${req.params.id}`)
-    );
-  }
-  res.download(filePath, fileName, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send('File not found.');
-    }
-  });
+  // if (!mongoose.Types.ObjectId.isValid(bookId)) {
+  //   return next(new AppError('Invalid book ID'));
+  // }
+  // const book = await Book.findById(bookId);
+  // console.log(book)
+  // const fileName = book.title + '.pdf';
+  // const filePath = '/../dev-data/Books/' + fileName;
+
+  // if (!book) {
+  //   return next(
+  //     new AppError(`Can't find book with this id : ${req.params.id}`)
+  //   );
+  // }
+  // res.download(filePath, fileName, (err) => {
+  //   if (err) {
+  //     console.error(err);
+  //     res.status(404).send('File not found.');
+  //   }
+  // });
+// });
+
+
+exports.downloadBook= catchAsync(async (req, res) => {
+  console.log('hellooooooooo world')  
+  
 });
