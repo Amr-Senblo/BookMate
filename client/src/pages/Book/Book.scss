@@ -157,12 +157,15 @@
             padding-bottom: 2px;
             background-image: url("../../assets/svg/unchecked-star.svg");
             background-size: cover;
+            transition: all 0.5s ease;
           }
           .un-star-action-icon {
             width: 30px;
             height: 30px;
             background-image: url("../../assets/svg/star.svg");
             background-size: cover;
+            transition: all 0.5s ease;
+
           }
           .download-action-icon {
             width: 40px;

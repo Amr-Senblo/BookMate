@@ -1,16 +1,9 @@
 /* LoadingCircle.scss */
 
-$border-color: #fff;
-$border-color-1: #8E42D3;
-$border-color-2: #D46975;
+$border-color: #BCBED0;
+$border-color-1: #20387E;
 
 .loading-circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
   .loading-circle-spinner {
     border: 4px solid $border-color;
     border-top: 4px solid $border-color-1;

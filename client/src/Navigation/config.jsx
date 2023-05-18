@@ -6,6 +6,7 @@ import {
   CATEGORIES,
   SAVED,
   SETTINGS,
+  CATEGORY,
   // CATEGORY,
   // CATEGORY_SECTION,
   // PROFILE,
@@ -18,6 +19,7 @@ import Book from "../pages/Book/Book";
 import CategoriesContainer from "../components/CategoriesContainer/CategoriesContainer";
 import SavedContainer from "../components/SavedContainer/SavedContainer";
 import Settings from "../pages/Settings/Settings";
+import CategoryContainer from "../components/CategoryContainer/CategoryContainer";
 
 export const routerConfig = createBrowserRouter([
   {
@@ -29,6 +31,7 @@ export const routerConfig = createBrowserRouter([
       { path: CATEGORIES, element: <CategoriesContainer /> },
       { path: SAVED, element: <SavedContainer /> },
       { path: SETTINGS, element: <Settings /> },
+      { path: CATEGORY, element: <CategoryContainer /> },
       //   { path: CATEGORY, element: <Category /> },
       //   { path: CATEGORY_SECTION, element: <CategorySection /> },
       //   { path: PROFILE, element: <Profile /> },

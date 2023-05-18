@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Book.scss";
-import CheckedHeart from "../../assets/svg/checked-heart.svg";
-import UnCheckedHeart from "../../assets/svg/unchecked-heart.svg";
-import Download from "../../assets/svg/download.svg";
 import StarIcon from "../../assets/svg/star.svg";
-import SavedIcon from "../../assets/svg/saved.svg";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../custom/useAuth";
 import { getCookies } from "../../custom/useCookies";
 
+import { toast } from "react-toastify";
+
+import {
+  loadingToastStyle,
+  updateToSuccessToastStyle,
+  updateToErrorToastStyle,
+} from "../../helpers/toastStyles";
+import LoadingCircle from "../../components/LoadingCircle/LoadingCircle";
+
 const Book = () => {
   const { bookId } = useParams();
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState(null);
   const [saved, setSaved] = useState(false);
 
   const auth = useAuth();
 
   useEffect(() => {
-    console.log("auth.user.token from book", auth.user);
     try {
       axios
-        .get(`http://localhost:6969/api/v1/user/is-saved/`, {
-          data: { bookId },
+        .get(`http://localhost:6969/api/v1/user/is-saved/${bookId}`, {
           headers: {
             Authorization: `Bearer ${getCookies("token")}`,
           },
@@ -36,8 +39,8 @@ const Book = () => {
       console.log("error", error);
     }
   }, [saved]);
-
   const saveHandler = () => {
+    const toastStatus = toast.loading("Saving book...", loadingToastStyle);
     try {
       axios
         .post(
@@ -52,13 +55,25 @@ const Book = () => {
         .then((res) => {
           console.log("res.data", res.data);
           setSaved(true);
+          toast.update(toastStatus, {
+            ...updateToSuccessToastStyle,
+            render: "Book saved successfully!",
+          });
+          // toast.success("Book saved successfully!");
         });
     } catch (error) {
       console.log("error", error);
+      toast.update(toastStatus, {
+        ...updateToErrorToastStyle,
+        render: "Failed to save book.",
+      });
+      // toast.error("Failed to save book.");
     }
   };
 
   const unSaveHandler = () => {
+    // toast.info("Removing book...", toastConfig);
+    const toastStatus = toast.loading("Removing book...", loadingToastStyle);
     try {
       axios
         .post(
@@ -73,9 +88,20 @@ const Book = () => {
         .then((res) => {
           console.log("res.data", res.data);
           setSaved(false);
+          // toast.success("Book removed successfully!", toastConfig);
+          toast.update(toastStatus, {
+            ...updateToSuccessToastStyle,
+            render: "Book removed successfully!",
+          });
+          // toast.success("Book removed successfully!");
         });
     } catch (error) {
       console.log("error", error);
+      toast.update(toastStatus, {
+        ...updateToErrorToastStyle,
+        render: "Failed to remove book.",
+      });
+      // toast.error("Failed to remove book.");
     }
   };
 
@@ -93,11 +119,11 @@ const Book = () => {
         console.log("Unauthorized");
       }
     }
-  }, [bookId]);
+  }, [bookId, saved]);
 
   return (
     <>
-      {book && (
+      {book ? (
         <div className="book-card">
           <div className="book-image">
             <img src={book.imageUrl} alt={book.title} />
@@ -138,6 +164,8 @@ const Book = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <LoadingCircle />
       )}
     </>
   );

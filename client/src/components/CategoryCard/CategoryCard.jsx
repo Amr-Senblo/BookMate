@@ -5,10 +5,8 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
   return (
-    <Link
-      to={`/category/id=${category._id}`}
-      style={{ textDecoration: "none" }}
-    >
+    <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
+      {console.log("category", category._id)}
       <div className="category-card">
         <div className="category-name">{category.name}</div>
         <div className="books-count">

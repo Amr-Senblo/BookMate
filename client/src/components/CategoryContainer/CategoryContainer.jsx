@@ -1,17 +1,15 @@
-// import React, { useState } from "react";
-import "./CardContainer.css";
+import "./CategoryContainer.css";
 import BookCard from "../BookCard/BookCard";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import { useEffect, useState } from "react";
-// import WhiteButton from "../WhiteButton/WhiteButton";
-// import { Link } from "react-router-dom";
-// import books from "../../data/books";
 import axios from "axios";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
+import { useParams } from "react-router-dom";
 
-const CardContainer = () => {
+const CategoryContainer = () => {
   const [books, setBooks] = useState([]);
   const [filterdBooks, setFilteredBooks] = useState([]);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     setFilteredBooks(books);
@@ -20,12 +18,12 @@ const CardContainer = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:6969/api/v1/book`, {
+        .get(`http://localhost:6969/api/v1/category/${categoryId}`, {
           withCredentials: true,
         })
         .then((res) => {
-          // console.log(res);
-          setBooks(res.data.books);
+          console.log("res.data.category", res.data.category);
+          setBooks(res.data.category.books);
         });
     } catch (error) {
       console.log(error);
@@ -35,7 +33,7 @@ const CardContainer = () => {
   return (
     <>
       <SectionHeader
-        title="Explore"
+        title="Category books"
         data={books}
         onSearch={setFilteredBooks}
         type="book"
@@ -53,4 +51,4 @@ const CardContainer = () => {
   );
 };
 
-export default CardContainer;
+export default CategoryContainer;

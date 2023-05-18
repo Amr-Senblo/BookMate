@@ -27,7 +27,7 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    console.log("auth from sidebar", auth);
+    // console.log("auth from sidebar", auth);
     const path = location.pathname;
     if (path === "/") {
       setSelectedSection("explore");
@@ -62,7 +62,6 @@ const SideBar = () => {
       <div className="user">
         {auth.user.user ? (
           <>
-            {console.log("auth.user", auth.user)}
             <button
               className="user-logout"
               alt="Logout"

@@ -78,7 +78,7 @@ const Popup = ({ onClose }) => {
   }, []);
 
   useEffect(() => {
-    console.log("auth.user", auth.user);
+    // console.log("auth.user", auth.user);
     if (auth.user.status === "success") {
       console.log("successed login");
       closePopup();
