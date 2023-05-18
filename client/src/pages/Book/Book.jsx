@@ -128,10 +128,15 @@ const Book = () => {
     setIsDownloading(true);
 
     axios
-      // .get("/api/v1/book/download/645073e7230440341ac6d755")
-      .get("http://localhost:6969/api/v1/book/download/${bookId}")
-      .then((response) => response.blob())
-      .then((blob) => {
+      .get(`http://localhost:6969/api/v1/book/download/${bookId}`, {
+        headers: {
+          Authorization: `Bearer ${getCookies("token")}`,
+        },
+        responseType: "blob",
+      })
+      .then((response) => {
+        const blob = response.data;
+
         const link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
         link.setAttribute("download", "my-file.pdf");
