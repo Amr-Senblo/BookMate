@@ -11,7 +11,7 @@ exports.getAllCategories = catchAsync(async (req, res) => {
 });
 
 exports.getCategory = catchAsync(async (req, res, next) => {
-  const category = await Category.findById(req.params.id);
+  const category = await Category.findById(req.params.id).populate('books');
   if (!Category) {
     return next(
       new AppError(`Can't find book with this id : ${req.params.id}`)
@@ -19,9 +19,9 @@ exports.getCategory = catchAsync(async (req, res, next) => {
   }
   res.status(200).json({
     status: 'success',
-    
-      category,
-    
+    category,
+
+
   });
 });
 
@@ -34,8 +34,7 @@ exports.createCategory = catchAsync(async (req, res) => {
   res.status(201).json({
     status: 'success',
 
-      category,
-  
+    category,
   });
 });
 
@@ -46,8 +45,7 @@ exports.addBookToCategory = catchAsync(async (req, res) => {
   res.status(201).json({
     status: 'success',
 
-      category,
-
+    category,
   });
 });
 
@@ -59,10 +57,7 @@ exports.deleteBookFromCategory = catchAsync(async (req, res) => {
   res.status(200).json({
     status: 'success',
 
-      category,
-      categoryBooks: category.books,
- 
+    category,
+    categoryBooks: category.books,
   });
 });
-
-

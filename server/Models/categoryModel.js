@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema({
   name: {
@@ -13,9 +13,14 @@ const categorySchema = new mongoose.Schema({
   books: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Book",
+      ref: 'Book',
     },
   ],
 });
 
-module.exports = mongoose.model("Category", categorySchema);
+categorySchema.pre(['find', 'findById'], function (next) {
+  this.populate('books');
+  next();
+});
+
+module.exports = mongoose.model('Category', categorySchema);
