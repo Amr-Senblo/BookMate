@@ -1,7 +1,9 @@
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const Book = require('./../Models/bookModel');
-
+const path = require('path');
+const mongoose = require('mongoose');
+const fs = require('fs');
 exports.getBook = catchAsync(async (req, res, next) => {
   const book = await Book.findById(req.params.id);
   if (!book) {
@@ -14,7 +16,6 @@ exports.getBook = catchAsync(async (req, res, next) => {
     book,
   });
 });
-
 
 exports.getAllBooks = catchAsync(async (req, res) => {
   console.log(req.query);
@@ -80,34 +81,16 @@ exports.deleteBook = catchAsync(async (req, res) => {
 });
 
 exports.downloadBook = catchAsync(async (req, res) => {
-// let bookId = req.params.bookId;
-console.log('😎😋')
-let { bookId } = req.body;
-bookId = ObjectId(bookId);
-console.log(typeof bookId)
+  const book = await Book.findById(req.params.id);
+  console.log(book);
+  const fileName = book.title + '.pdf';
+  const filePath = '/../dev-data/Books/' + fileName;
 
-if (!mongoose.Types.ObjectId.isValid(bookId)) {
-  return next(new AppError('Invalid book ID'));
-}
-const book = await Book.findById(bookId);
-console.log(book)
-const fileName = book.title + '.pdf';
-const filePath = '/../dev-data/Books/' + fileName;
-
-if (!book) {
-  return next(
-    new AppError(`Can't find book with this id : ${req.params.id}`)
-  );
-}
-res.download(filePath, fileName, (err) => {
-  if (err) {
-    console.error(err);
-    res.status(404).send('File not found.');
+  if (!book) {
+    return next(
+      new AppError(`Can't find book with this id : ${req.params.id}`)
+    );
   }
-});
-});
+  res.download(path.resolve(`${__dirname} + ${filePath}`));
 
-// exports.downloadBook = catchAsync(async (req, res,next) => {
-//   console.log('hellooooooooo world');
-//   next();
-// });
+});

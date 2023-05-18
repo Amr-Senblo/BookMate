@@ -34,6 +34,6 @@ router.post(
 );
 // router.get('/download',bookController.downloadBook)
 
-router.get('/download/:id', bookController.downloadBook);
+router.get('/download/:id',authMiddleware.protect, bookController.downloadBook);
 
 module.exports = router;

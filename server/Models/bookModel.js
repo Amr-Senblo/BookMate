@@ -26,10 +26,10 @@ const bookSchema = new mongoose.Schema({
     required: true
   },
 
-  // imageUrl: {
-  //   type: String,
-  //   required: true,
-  // },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
   rating: {
     type: Number,
     required: true,

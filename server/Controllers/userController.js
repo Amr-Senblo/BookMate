@@ -1,3 +1,4 @@
+const Book = require('../Models/bookModel');
 const catchAsync = require('../utils/catchAsync');
 const User = require('./../Models/userModel');
 
@@ -11,13 +12,13 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.getAuthUser=catchAsync(async(req,res,next)=>{
-  const user=await User.findById(req.user.id)
+exports.getAuthUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
   res.status(200).json({
     status: 'success',
     user,
   });
-})
+});
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
@@ -100,7 +101,6 @@ exports.addBookToSaved = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
   // console.log(userId);
 
-  // this part is not  too imnportant
   const user = await User.findById(userId);
 
   // console.log(user)
@@ -119,13 +119,21 @@ exports.addBookToSaved = catchAsync(async (req, res, next) => {
 
   // Add the book to the "saved" array
   user.saved.push({ bookId });
-  console.log(user.saved);
 
   // Save the updated user document
   await user.save({ validateBeforeSave: false });
-  return res
-    .status(200)
-    .json({ message: 'Book added to saved successfully', saved: user.saved });
+
+  const book = await Book.findById(bookId);
+  if (!book) {
+    return next(new AppError('Book not found', 404));
+  } else {
+    book.rating++;
+    await book.save({ validateBeforeSave: false });
+  }
+  return res.status(200).json({
+    message: 'Book added to saved successfully',
+    saved: user.saved,
+  });
 });
 
 exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
@@ -150,10 +158,20 @@ exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
 
   // Remove the book from the "saved" array
   user.saved.splice(savedBookIndex, 1);
+
   console.log(user.saved);
 
   // Save the updated user document
   await user.save({ validateBeforeSave: false });
+
+  const book = await Book.findById(bookId);
+  if (!book) {
+    return next(new AppError('Book not found', 404));
+  } else {
+    book.rating--;
+    await book.save({ validateBeforeSave: false });
+  }
+
   return res.status(200).json({
     message: 'Book removed from saved successfully',
     saved: user.saved,
@@ -163,7 +181,7 @@ exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
 exports.getSavedBooks = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
   // const user = User.findById(userId);
-  const user =await User.findById(userId);
+  const user = await User.findById(userId);
 
   if (!user) {
     return next(new AppError('User not found', 404));
@@ -175,7 +193,7 @@ exports.getSavedBooks = catchAsync(async (req, res, next) => {
 });
 
 exports.isSaved = catchAsync(async (req, res, next) => {
-  const { bookId } = req.body;
+  const { bookId } = rea.params;
   const userId = req.user.id;
   const user = await User.findById(userId);
 
