@@ -121,6 +121,25 @@ const Book = () => {
     }
   }, [bookId, saved]);
 
+
+  
+  const [isDownloading, setIsDownloading] = useState(false);
+  const downloadFile = () => {
+    setIsDownloading(true);
+
+    axios
+      // .get("/api/v1/book/download/645073e7230440341ac6d755")
+      .get("http://localhost:6969/api/v1/book/download/${bookId}")
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute("download", "my-file.pdf");
+        link.click();
+      })
+      .finally(() => setIsDownloading(false));
+  };
+
   return (
     <>
       {book ? (
@@ -158,7 +177,7 @@ const Book = () => {
                   <span className="star-action-icon"></span>
                 </button>
               )}
-              <button className="action-btn">
+              <button className="action-btn" onClick={downloadFile}>
                 <span className="download-action-icon"></span>
               </button>
             </div>

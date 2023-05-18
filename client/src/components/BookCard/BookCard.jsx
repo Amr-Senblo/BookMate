@@ -7,6 +7,8 @@ import "./BookCard.scss";
 import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
+
+
   return (
     <Link to={`/book/${book._id}`} style={{ textDecoration: "none" }}>
       <div className="card">
