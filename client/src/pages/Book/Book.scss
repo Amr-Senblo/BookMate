@@ -4,7 +4,7 @@
   justify-content: center;
   width: 600px;
   height: 420px;
-  margin-left: 40%;
+  // margin-left: 40%;
   border-radius: 20px;
   background-color: #f1ecff;
   padding: 4rem;
@@ -121,11 +121,9 @@
       font-weight: 550;
       margin: 0 10px;
       color : #fff;
+      width: 150px;
     }
 
-    
-
-  
       .book-actions {
         display: flex;
         // gap: 1rem;

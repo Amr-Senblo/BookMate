@@ -6,18 +6,84 @@ import Download from "../../assets/svg/download.svg";
 import StarIcon from "../../assets/svg/star.svg";
 import SavedIcon from "../../assets/svg/saved.svg";
 import { useParams } from "react-router-dom";
-import books from "../../data/books";
 import axios from "axios";
+import { useAuth } from "../../custom/useAuth";
+import { getCookies } from "../../custom/useCookies";
 
 const Book = () => {
   const { bookId } = useParams();
   const [book, setBook] = useState({});
+  const [saved, setSaved] = useState(false);
+
+  const auth = useAuth();
+
+  useEffect(() => {
+    console.log("auth.user.token from book", auth.user);
+    try {
+      axios
+        .get(`http://localhost:6969/api/v1/user/is-saved/`, {
+          data: { bookId },
+          headers: {
+            Authorization: `Bearer ${getCookies("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log("res.data", res.data);
+          console.log("res.data.isSaved", res.data.isSaved);
+          setSaved(res.data.isSaved);
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  }, [saved]);
+
+  const saveHandler = () => {
+    try {
+      axios
+        .post(
+          `http://localhost:6969/api/v1/user/save-book`,
+          { bookId },
+          {
+            headers: {
+              Authorization: `Bearer ${getCookies("token")}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log("res.data", res.data);
+          setSaved(true);
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const unSaveHandler = () => {
+    try {
+      axios
+        .post(
+          `http://localhost:6969/api/v1/user/unsave-book`,
+          { bookId },
+          {
+            headers: {
+              Authorization: `Bearer ${getCookies("token")}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log("res.data", res.data);
+          setSaved(false);
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   useEffect(() => {
     try {
       axios.get(`http://localhost:6969/api/v1/book/${bookId}`).then((res) => {
-        console.log(res);
-        setBook(res.data);
+        console.log("res.data", res.data);
+        setBook(res.data.book);
       });
     } catch (error) {
       console.log("error", error);
@@ -50,19 +116,22 @@ const Book = () => {
             >
               <div className="rate">
                 <img src={StarIcon} alt="Star Icon" className="star-icon" />
-                <p className="rate-number">{` ${book.stars}`}</p>
+                <p className="rate-number">{` ${book.rating}`}</p>
               </div>
               <button className="book-category-box">
                 <p className="book-category">{book.category}</p>
               </button>
             </div>
             <div className="book-actions">
-              <button className="action-btn">
-                <span className="star-action-icon"></span>
-              </button>
-              {/* <button className="action-btn">
-            <span className="un-star-action-icon"></span>
-          </button> */}
+              {saved ? (
+                <button className="action-btn" onClick={unSaveHandler}>
+                  <span className="un-star-action-icon"></span>
+                </button>
+              ) : (
+                <button className="action-btn" onClick={saveHandler}>
+                  <span className="star-action-icon"></span>
+                </button>
+              )}
               <button className="action-btn">
                 <span className="download-action-icon"></span>
               </button>

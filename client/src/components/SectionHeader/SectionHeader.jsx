@@ -6,13 +6,34 @@ import PropTypes from "prop-types";
 
 import SearchIcon from "../../assets/svg/search.svg";
 
-const SectionHeader = ({ title, onSearchClick }) => {
+const SectionHeader = ({ title, data, onSearch, type }) => {
   const [searchText, setSearchText] = useState("");
+  const [searchData, setSearchData] = useState("");
+
+  const handleSearchClick = () => {
+    let filteredData = [];
+    if (type === "book") {
+      filteredData = data.filter((item) => {
+        return item.title.toLowerCase().includes(searchData.toLowerCase());
+      });
+    } else if (type === "category") {
+      filteredData = data.filter((item) => {
+        return item.name.toLowerCase().includes(searchData.toLowerCase());
+      });
+    }
+    onSearch(filteredData);
+    console.log(filteredData);
+  };
+
   useEffect(() => {
     if (title === "Explore") setSearchText("book");
     else if (title === "Categories") setSearchText("category");
     else if (title === "Your saved books") setSearchText("saved book");
-  }, []);
+  }, [title]);
+
+  useEffect(() => {
+    handleSearchClick();
+  }, [searchData]);
 
   return (
     <div className="section-header">
@@ -21,17 +42,18 @@ const SectionHeader = ({ title, onSearchClick }) => {
         <img
           src={SearchIcon}
           alt="Search Icon"
-          onClick={onSearchClick}
+          onClick={handleSearchClick}
           width={30}
           height={30}
           style={{
             margin: "0 1rem",
           }}
         />
-        <input type="text" placeholder={`Find the ${searchText}`} />
-        {/* <span className="search-icon"> */}
-
-        {/* </span> */}
+        <input
+          type="text"
+          placeholder={`Find the ${searchText}`}
+          onChange={(e) => setSearchData(e.target.value)}
+        />
       </div>
     </div>
   );
@@ -42,4 +64,7 @@ export default SectionHeader;
 SectionHeader.propTypes = {
   title: PropTypes.string.isRequired,
   onSearchClick: PropTypes.func,
+  data: PropTypes.array,
+  onSearch: PropTypes.func,
+  type: PropTypes.string,
 };

@@ -17,7 +17,7 @@ const Layout = () => {
 
   useEffect(() => {
     setmarginWidth(screenWidth - mainWidth);
-    console.log(screenWidth);
+    // console.log(screenWidth);
   }, [mainWidth, screenWidth]);
 
   return (

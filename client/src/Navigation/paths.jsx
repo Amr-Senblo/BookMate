@@ -1,9 +1,9 @@
 export const ROOT = "/";
-export const BOOK = "/books/:bookId";
+export const BOOK = "/book/:bookId";
 export const CATEGORIES = "/categories/";
 export const CATEGORY = "/category/:categoryId";
 export const CATEGORY_SECTION = "/category/:categoryId/:sectionId";
-export const SAVED = "/saved";
+export const SAVED = "/saved/";
 export const SETTINGS = "/settings";
 export const PROFILE = "/profile/:userId";
 export const LOVED_BOOKS = "/loved-books/:userId";

@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
   return (
-    <Link to={`/books/${book._id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/book/${book._id}`} style={{ textDecoration: "none" }}>
       <div className="card">
         <div className="card-image">
-          <img src={"https://picsum.photos/200"} alt={book.title} />
+          <img src={book.imageUrl} alt={book.title} />
           <div className="rate">
             <p className="rate-number">{` ${book.rating}`}</p>
           </div>
@@ -30,7 +30,7 @@ BookCard.propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    // imageUrl: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
   }).isRequired,
 };

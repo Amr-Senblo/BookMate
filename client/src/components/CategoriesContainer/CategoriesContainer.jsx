@@ -8,6 +8,12 @@ import CategoryCard from "../CategoryCard/CategoryCard";
 
 const CategoriesContainer = () => {
   const [categories, setCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([]);
+
+  useEffect(() => {
+    setFilteredCategories(categories);
+  }, [categories]);
+
   useEffect(() => {
     try {
       axios
@@ -26,9 +32,14 @@ const CategoriesContainer = () => {
 
   return (
     <>
-      <SectionHeader title="Categories" />
+      <SectionHeader
+        title="Categories"
+        data={categories}
+        onSearch={setFilteredCategories}
+        type="category"
+      />
       <div className="categories-container">
-        {categories.map((category, index) => (
+        {filteredCategories.map((category, index) => (
           <CategoryCard key={index} category={category} />
         ))}
       </div>

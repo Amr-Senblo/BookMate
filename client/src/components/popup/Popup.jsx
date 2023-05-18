@@ -2,12 +2,61 @@
 import { useEffect, useRef, useState } from "react";
 import "./Popup.scss";
 import useClickOutside from "../../custom/useClickOutside";
+import { useAuth } from "../../custom/useAuth";
+
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const signUpSchema = yup.object().shape({
+  name: yup.string().required("Name is required"),
+  email: yup
+    .string()
+    .email("Write your email rightly")
+    .required("Email is required"),
+  password: yup.string().min(8).required(),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required(),
+});
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Write your email rightly")
+    .required("Email is required"),
+  password: yup.string().required(),
+});
 
 const Popup = ({ onClose }) => {
   const [showLogin, setShowLogin] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
-
   const popupRef = useRef(null);
+  const auth = useAuth();
+  const navigate = useNavigate();
+
+  const loginForm = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const registerForm = useForm({
+    resolver: yupResolver(signUpSchema),
+  });
+
+  const {
+    register: loginRegister,
+    handleSubmit: handleLoginSubmit,
+    formState: { errors: loginErrors },
+    reset: resetLoginForm,
+  } = loginForm;
+  const {
+    register: signUpRegister,
+    handleSubmit: handleSignUpSubmit,
+    formState: { errors: signUpErrors },
+    reset: resetSignUpForm,
+  } = registerForm;
 
   const toggleLoginRegister = () => {
     setShowLogin(!showLogin);
@@ -27,6 +76,39 @@ const Popup = ({ onClose }) => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    console.log("auth.user", auth.user);
+    if (auth.user.status === "success") {
+      console.log("successed login");
+      closePopup();
+      resetLoginForm();
+      resetSignUpForm();
+      navigate("/");
+    }
+  }, [auth.user]);
+
+  const loginSubmitHandler = (data) => {
+    console.log("login data", data);
+    const sendRequest = {
+      email: data.email,
+      password: data.password,
+    };
+    console.log("sendRequest", sendRequest);
+    auth.useLogin(sendRequest);
+  };
+
+  const signUpSubmitHandler = (data) => {
+    console.log("register data", data);
+    const sendRequest = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      passwordConfirm: data.passwordConfirm,
+    };
+    console.log(sendRequest);
+    auth.useSignup(sendRequest);
+  };
 
   return (
     <div className="popup">
@@ -51,30 +133,79 @@ const Popup = ({ onClose }) => {
           </button>
         </div>
         {showLogin ? (
-          <form className="popup__content__form">
+          <form
+            className="popup__content__form"
+            onSubmit={handleLoginSubmit(loginSubmitHandler)}
+          >
             <label>
               <span className="label-name">Email</span>
-              <input type="email" name="email" required />
+              <input
+                type="email"
+                name="email"
+                {...loginRegister("email")}
+                required
+              />
+              {loginErrors.email && <p>{loginErrors.email.message}</p>}
             </label>
             <label>
               <span className="label-name">Password</span>
-              <input type="password" name="password" required />
+              <input
+                type="password"
+                name="password"
+                {...loginRegister("password")}
+                required
+              />
+              {loginErrors.password && <p>{loginErrors.password.message}</p>}
             </label>
             <button type="submit">Login</button>
           </form>
         ) : (
-          <form className="popup__content__form">
+          <form
+            className="popup__content__form"
+            onSubmit={handleSignUpSubmit(signUpSubmitHandler)}
+          >
+            <label>
+              <span className="label-name">Name</span>
+              <input
+                type="text"
+                name="name"
+                {...signUpRegister("name")}
+                required
+              />
+              {signUpErrors.name && <p>{signUpErrors.name.message}</p>}
+            </label>
+
             <label>
               <span className="label-name">Email</span>
-              <input type="email" name="email" required />
+              <input
+                type="email"
+                name="email"
+                {...signUpRegister("email")}
+                required
+              />
+              {signUpErrors.email && <p>{signUpErrors.email.message}</p>}
             </label>
             <label>
               <span className="label-name">Password</span>
-              <input type="password" name="password" required />
+              <input
+                type="password"
+                name="password"
+                {...signUpRegister("password")}
+                required
+              />
+              {signUpErrors.password && <p>{signUpErrors.password.message}</p>}
             </label>
             <label>
               <span className="label-name">Confirm password</span>
-              <input type="password" name="confirm-password" required />
+              <input
+                type="password"
+                name="passwordConfirm"
+                {...signUpRegister("passwordConfirm")}
+                required
+              />
+              {signUpErrors.passwordConfirm && (
+                <p>{signUpErrors.passwordConfirm.message}</p>
+              )}
             </label>
             <button type="submit">Register</button>
           </form>

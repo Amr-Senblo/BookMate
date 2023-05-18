@@ -10,6 +10,13 @@ import axios from "axios";
 
 const CardContainer = () => {
   const [books, setBooks] = useState([]);
+  const [filterdBooks, setFilteredBooks] = useState([]);
+
+  useEffect(() => {
+    setFilteredBooks(books);
+    console.log("books beta3t amroo", books[0]);
+  }, [books]);
+
   useEffect(() => {
     try {
       axios
@@ -17,7 +24,7 @@ const CardContainer = () => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setBooks(res.data.books);
         });
     } catch (error) {
@@ -27,9 +34,14 @@ const CardContainer = () => {
 
   return (
     <>
-      <SectionHeader title="Explore" />
+      <SectionHeader
+        title="Explore"
+        data={books}
+        onSearch={setFilteredBooks}
+        type="book"
+      />
       <div className="card-container">
-        {books.map((book, index) => (
+        {filterdBooks.map((book, index) => (
           <BookCard key={index} book={book} />
         ))}
       </div>

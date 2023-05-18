@@ -7,19 +7,27 @@ import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // import books from "../../data/books";
 import axios from "axios";
-import tempBooks from "../../data/books";
+import { getCookies } from "../../custom/useCookies";
 
 const SavedContainer = () => {
   const [books, setBooks] = useState([]);
+  const [filterdBooks, setFilteredBooks] = useState([]);
+
+  useEffect(() => {
+    setFilteredBooks(books);
+  }, [books]);
+
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:6969/api/v1/saved`, {
-          withCredentials: true,
+        .get(`http://localhost:6969/api/v1/user/saved-books`, {
+          headers: {
+            Authorization: `Bearer ${getCookies("token")}`,
+          },
         })
         .then((res) => {
-          console.log(res);
-          setBooks(res.data.books);
+          console.log("saved books", res.data);
+          setBooks(res.data.saved);
         });
     } catch (error) {
       console.log(error);
@@ -28,9 +36,14 @@ const SavedContainer = () => {
 
   return (
     <>
-      <SectionHeader title="Your saved books" />
+      <SectionHeader
+        title="Your saved books"
+        data={books}
+        onSearch={setFilteredBooks}
+        type="book"
+      />
       <div className="card-container">
-        {books.map((book, index) => (
+        {filterdBooks.map((book, index) => (
           <BookCard key={index} book={book} />
         ))}
       </div>
