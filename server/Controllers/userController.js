@@ -178,19 +178,22 @@ exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
   });
 });
 
+
 exports.getSavedBooks = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
-  // const user = User.findById(userId);
-  const user = await User.findById(userId);
+  const user = await User.findById(userId).populate('saved.bookId');
 
   if (!user) {
     return next(new AppError('User not found', 404));
   } else {
-    return res
-      .status(200)
-      .json({ message: 'Saved books fetched successfully', saved: user.saved });
+    return res.status(200).json({
+      message: 'Saved books fetched successfully',
+      saved: user.saved.map((item) => item.bookId),
+      // saved: user.saved,
+    });
   }
 });
+
 
 exports.isSaved = catchAsync(async (req, res, next) => {
   const { bookId } = rea.params;
