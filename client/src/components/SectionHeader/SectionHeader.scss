@@ -1,0 +1,50 @@
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 90%;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #20387E; 
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    border-radius: 20px;
+    width: 50%;
+  }
+  
+  .search-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #fff;
+    color: #141414;
+    font-family: inherit;
+    
+  }
+  
+  .search-icon {
+    // margin-right: 0.5rem;
+    // font-size: 1.5rem;
+    // color: #777;
+    width: 20px;
+    height: 20px;
+    background-color: url("../../assets/svg/search.svg");
+    background-size: contain;
+  }
+  

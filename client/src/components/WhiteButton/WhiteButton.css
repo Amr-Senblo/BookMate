@@ -1,0 +1,12 @@
+button {
+  border: none;
+  outline: none;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  color: #141414;
+  border-radius: 10px;
+  cursor: pointer;
+}/*# sourceMappingURL=WhiteButton.css.map */

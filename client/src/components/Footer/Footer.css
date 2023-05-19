@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EAE3EE;
+  padding: 1rem;
+  color: #141414;
+  font-size: 0.9rem;
+}
+.footer .left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.footer .logo {
+  height: 20rem;
+}
+.footer .right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.footer .right p {
+  margin-right: 0.5rem;
+}
+.footer .right .contributors-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.footer .right .contributors-list li {
+  margin-left: 0.5rem;
+}/*# sourceMappingURL=Footer.css.map */

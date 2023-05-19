@@ -1,0 +1,270 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: #f5f5f6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 5rem;
+  transition: width 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.sidebar nav ul {
+  margin: 0;
+  list-style: none;
+}
+.sidebar nav ul li {
+  margin: 0 4rem 1rem 2rem;
+  height: 50px;
+}
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #BCBED0;
+  text-decoration: none;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+.sidebar nav ul li a .arrow {
+  display: block;
+  width: 15px;
+  height: 28px;
+  background-image: url("../../assets/svg/light-arrow.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li a .arrow.selected {
+  background-image: url("../../assets/svg/blue-arrow.svg");
+}
+.sidebar nav ul li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+}
+.sidebar nav ul li .icon .explore-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url("../../assets/svg/light-explore.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li .icon .explore-icon.selected {
+  background-image: url("../../assets/svg/explore.svg");
+}
+.sidebar nav ul li .icon .categories-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url("../../assets/svg/light-categories.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li .icon .categories-icon.selected {
+  background-image: url("../../assets/svg/categories.svg");
+}
+.sidebar nav ul li .icon .saved-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url("../../assets/svg/light-saved.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li .icon .saved-icon.selected {
+  background-image: url("../../assets/svg/saved.svg");
+}
+.sidebar nav ul li .icon .settings-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url("../../assets/svg/light-settings.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar nav ul li .icon .settings-icon.selected {
+  background-image: url("../../assets/svg/settings.svg");
+}
+.sidebar .icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  margin-right: 1rem;
+  transition: background-image 0.3s ease-in-out;
+}
+.sidebar .icon.menu {
+  background-color: transparent;
+  background-image: url("../../assets/svg/menu.svg");
+  background-color: red;
+}
+.sidebar .icon.menu:hover {
+  cursor: pointer;
+}
+.sidebar .icon.explore {
+  background-image: url("../../assets/svg/light-explore.svg");
+}
+.sidebar .icon.explore.selected {
+  background-image: url("../../assets/svg/explore.svg");
+}
+.sidebar .icon.categories {
+  background-image: url("../../assets/svg/light-categories.svg");
+}
+.sidebar .icon.categories.selected {
+  background-image: url("../../assets/svg/categories.svg");
+}
+.sidebar .icon.saved {
+  background-image: url("../../assets/svg/light-saved.svg");
+}
+.sidebar .icon.saved.selected {
+  background-image: url("../../assets/svg/saved.svg");
+}
+.sidebar .user {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.sidebar .user .user-info {
+  width: 70%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sidebar .user .user-info .user-image {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 1rem;
+}
+.sidebar .user .user-info .user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.sidebar .user .user-info .user-details .user-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #20387E;
+}
+.sidebar .user .user-info .user-details .user-stars {
+  font-size: 0.9rem;
+  color: #BCBED0;
+  font-weight: 500;
+}
+.sidebar .user .user-logout {
+  width: 40px;
+  height: 80px;
+  background-color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+}
+.sidebar .user .user-logout:hover {
+  cursor: pointer;
+}
+.sidebar .user .user-logout:hover .logout-icon {
+  background-image: url("../../assets/svg/logout.svg");
+}
+.sidebar .user .user-logout .logout-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-color: transparent;
+  background-image: url("../../assets/svg/light-logout.svg");
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar .user .user-login-register {
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.sidebar .user .user-login-register .login-register-text {
+  color: #BCBED0;
+  font-family: "Lato", sans-serif;
+  font-size: 1.5rem;
+  transition: color 0.3s ease-in-out;
+}
+.sidebar .user .user-login-register:hover {
+  cursor: pointer;
+}
+.sidebar .user .user-login-register:hover .login-register-text {
+  color: #20387E;
+}
+.sidebar .collapse {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  align-self: flex-end;
+  margin-right: 1.9rem;
+}
+.sidebar .collapse .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  padding: 2px;
+}
+.sidebar .collapse .icon .collapse-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url("../../assets/svg/light-menu.svg");
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar .collapse .icon .collapse-icon:hover {
+  cursor: pointer;
+  background-image: url("../../assets/svg/menu.svg");
+}
+.sidebar.collapsed {
+  width: 130px;
+}/*# sourceMappingURL=SideBar.css.map */

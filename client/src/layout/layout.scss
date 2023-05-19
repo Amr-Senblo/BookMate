@@ -1,0 +1,31 @@
+$scrollbar-thumb-bg: #20387E;
+$scrollbar-thumb-hover-bg: #8d8daf;
+$small-screen: 768px;
+
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  transition: width 0.5s;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-bg;
+  border-radius: 2px;
+
+  &:hover {
+    background: $scrollbar-thumb-hover-bg;
+  }
+}
