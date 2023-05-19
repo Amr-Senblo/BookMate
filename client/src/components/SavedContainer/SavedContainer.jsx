@@ -26,7 +26,7 @@ const SavedContainer = () => {
           },
         })
         .then((res) => {
-          console.log("saved books", res.data);
+          console.log("saved books", res.data.saved);
           setBooks(res.data.saved);
         });
     } catch (error) {
@@ -43,9 +43,9 @@ const SavedContainer = () => {
         type="book"
       />
       <div className="card-container">
-        {filterdBooks.map((book, index) => (
-          <BookCard key={index} book={book} />
-        ))}
+        {filterdBooks.map(
+          (book, index) => book && <BookCard key={index} book={book} />
+        )}
       </div>
     </>
   );

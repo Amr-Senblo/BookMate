@@ -40,9 +40,9 @@ const CategoryContainer = () => {
       />
       <div className="card-container">
         {books ? (
-          filterdBooks.map((book, index) => (
-            <BookCard key={index} book={book} />
-          ))
+          filterdBooks.map(
+            (book, index) => book && <BookCard key={index} book={book} />
+          )
         ) : (
           <LoadingCircle />
         )}
