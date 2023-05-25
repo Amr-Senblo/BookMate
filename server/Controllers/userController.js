@@ -178,7 +178,6 @@ exports.removeBookFromSaved = catchAsync(async (req, res, next) => {
   });
 });
 
-
 exports.getSavedBooks = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
   const user = await User.findById(userId).populate('saved.bookId');
@@ -193,7 +192,6 @@ exports.getSavedBooks = catchAsync(async (req, res, next) => {
     });
   }
 });
-
 
 exports.isSaved = catchAsync(async (req, res, next) => {
   const { bookId } = rea.params;

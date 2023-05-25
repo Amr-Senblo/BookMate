@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const { GridFSBucket } = require('mongodb');
 
 const bookSchema = new mongoose.Schema({
   title: {
     type: String,
-    unique:true,
+    unique: true,
     required: true,
   },
   author: {
@@ -23,21 +24,18 @@ const bookSchema = new mongoose.Schema({
   },
   imgCover: {
     type: String,
-    required: true
-  },
-
-  imageUrl: {
-    type: String,
     required: true,
   },
+
   rating: {
     type: Number,
     required: true,
     default: 0,
   },
-  downloadLink: {
-    type: String,
-    required: true,
+
+  pdf: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PDF',
   },
   createdAt: {
     type: Date,
@@ -45,6 +43,7 @@ const bookSchema = new mongoose.Schema({
     select: false,
   },
 });
+
 const Book = mongoose.model('Book', bookSchema);
 
 module.exports = Book;

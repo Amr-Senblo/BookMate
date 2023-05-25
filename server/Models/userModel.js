@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const crypto= require('crypto')
+const crypto = require('crypto');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
   },
   // address: { type: String, required: true },
   isAdmin: { type: Boolean, defalut: false },
-  
+
   saved: [
     {
       bookId: {
@@ -79,6 +79,12 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+
 userSchema.methods.isCorrectPassword = async function (
   enteredPassword,
   hashedUserPassword
@@ -108,11 +114,12 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest('hex');
 
-  console.log({ resetToken }, this.passwordResetToken);
+  console.log({ resetToken });
+  console.log('Hashed Reset Token :', this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000; //will be expired after 10 min
 
-  return resetToken;
+  return resetToken; // will return the plain token NOT HASHED
 };
 
 const User = mongoose.model('User', userSchema);
